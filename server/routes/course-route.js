@@ -19,6 +19,34 @@ router.get('/', async (req, res) => {
     }
 })
 
+// get enrolled courses by student id
+router.get('/student/:_id', async (req, res) => {
+    let { _id } = req.params;
+    try{
+        let courses = await Course.find({ student: _id })
+        .populate("instructor", ["username", "email"])
+        .exec();
+        return res.send(courses);
+    }
+    catch(e){
+        return res.status(500).send(e);
+    }
+})
+
+router.get('/findCourse/:name', async (req, res) => {
+    let { name } = req.params;
+    try {
+        let course = await Course.find({ title: name})
+        .populate("instructor", ["email", "username"])
+        .exec();
+        return res.send(course);
+    }
+    catch(e){
+        return res.status(500).send(e);
+    }
+})
+
+// Get course by id
 router.get('/:_id', async (req, res) => {
     let { _id } = req.params;
     try {
@@ -29,6 +57,36 @@ router.get('/:_id', async (req, res) => {
     }
     catch(e){
         return res.status(500).send(e);
+    }
+})
+
+router.get('/instructor/:_id', async (req, res) => {
+    let { _id } = req.params;
+    try {
+        let courses = await Course.find({ instructor: _id })
+        .populate("instructor", ["username", "email"])
+        .exec();
+        return res.send(courses);
+    }
+    catch(e){
+        return res.status;
+    }
+
+})
+
+router.post('/enroll/:_id', async (req, res) => {
+    let { _id } = req.params;
+    try{
+        let course = await Course
+        .findOne({ _id }).exec();
+        console.log(course);
+        course.student.push(req.user._id);
+        await course.save();
+        return res.send('註冊完成');
+
+    }
+    catch(e){
+        return res.send(e)
     }
 })
 

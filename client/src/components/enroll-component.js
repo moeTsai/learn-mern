@@ -73,7 +73,8 @@ const EnrollComponent = (props) => {
                 <h5 className="card-title">課程名稱：{course.title}</h5>
                 <p className="card-text">{course.description}</p>
                 <p>價格: {course.price}</p>
-                <p>目前的學生人數: {course.students.length}</p>
+                <p>學生人數: {course.student.length}</p>
+                <p>講師: {course.instructor.username}</p>
                 <a
                   href="#"
                   onClick={handleEnroll}
