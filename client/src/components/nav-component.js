@@ -16,6 +16,12 @@ const NavComponent = ({currentUser, setCurrentUser}) => {
       <nav>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
+          <Link className="navbar-brand" to="/">
+            <img src="path_to_your_image" alt="Logo" style={{width: '40px'}}/>
+          </Link>
+          <a className="btn btn-primary" href="https://line.me/R/ti/p/~tine5588" target="_blank">
+            加入 LINE 好友
+          </a>
             <button
               class="navbar-toggler"
               type="button"
@@ -28,7 +34,7 @@ const NavComponent = ({currentUser, setCurrentUser}) => {
               <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navbarNav">
+            <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Link className="nav-link active" to="/">
